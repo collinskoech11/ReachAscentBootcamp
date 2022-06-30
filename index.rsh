@@ -1,12 +1,12 @@
-'reach 0.1';
+'reach 0.1';// declare reach version used 
 
 const Player = {
     getHand: Fun([], UInt),
     seeOutcome: Fun([UInt], Null),
-}// define player and the functions associated
+}// define player and pass in the functions associated with any Player object
 
-export const main = Reach.App(() => {
-    const Alice = Participant('Alice', {// defining the player
+export const main = Reach.App(() => {//reach Constructor equivalent 
+    const Alice = Participant('Alice', {// defining the player interact interface 
         ...Player,
     });
     const Bob = Participant('Bob', {
@@ -15,9 +15,9 @@ export const main = Reach.App(() => {
     init();
 
     Alice.only(() => {
-        const handAlice = declassify(interact.getHand())
+        const handAlice = declassify(interact.getHand())// check if the hand alices local step is legit
     })
-    Alice.publish(handAlice);
+    Alice.publish(handAlice);// publish alices picked hand
     commit();
 
     Bob.only(() => {
@@ -25,6 +25,13 @@ export const main = Reach.App(() => {
     })
     Bob.publish(handBob);
 
-    const outcome = (handAlice = declassify)
+    const outcome = (handAlice + (4 - handBob)) % 3;
+    commit();
+
+    each([Alice, Bob], () => {
+        interact.seeOutcome(outcome);
+    });
+    
 });
+
 
