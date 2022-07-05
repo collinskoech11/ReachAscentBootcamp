@@ -12,14 +12,14 @@ const ctcBob = accBob.contract(backend, ctcAlice.getInfo());// Bob attaches to a
 const HAND = ['rock', 'paper', 'scissors'];
 const OUTCOME = ['BOB WINS', 'DRAW', 'Alice wins'];
 
-const Player = (who) => ({
+const Player = (Who) => ({
     getHand: () => {
         const hand = Math.floor(Math.random() * 3)
         console.log(`${Who} played ${HAND[hand]}`);
         return hand;
     },
-    SeeOutcome: (outcome) => {
-        console.log(`${Who1} saw the outcome ${OUTCOME}`)
+    seeOutcome: (outcome) => {
+        console.log(`${Who} saw the outcome ${OUTCOME}`)
     },
 });
 
